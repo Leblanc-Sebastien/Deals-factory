@@ -1,0 +1,78 @@
+		.cat-def {
+			background-color: #f6f7f9;
+			height: 100px;
+		}
+		.menu-filtre {
+			background-color: white;
+			height: 60px;
+		}
+		.deal-title{
+			font-weight: bold;
+		}
+		.deals-list {
+			background-color: #e9eaed;
+			height: 100%;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.deal-item {
+			margin-bottom: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			background-color: white;
+			border-radius: 5px;
+		}
+		.burn-style{
+			border: 1px solid #d1d5db;
+			border-radius: 5px;
+			padding-top : 5px;
+			padding-bottom : 5px;
+			padding-left : 20px;
+			padding-right : 20px;
+			width : 100px;
+			margin-top : 10px;
+			margin-bottom : 10px;
+			color:red;
+		}
+		.new-price-style{
+			font-weight : bold;
+			color: red;
+		}
+		.old-price-style{
+			color: grey;
+		}
+		.percent-price-style{
+			font-weight: bold;
+		}
+		.grey-style{
+			color:grey;
+			font-size: 14px ;
+        }
+        
+        .white-style{
+            background-color: white;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top : 10px;
+            margin-bottom : 10px;
+        }
+        body{
+            background-color : #e9eaed;
+		}   
+		
+		/*pagination fin de page*/
+
+		.margin-pagination{
+			width: 200px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.page-link{
+			color:  #17a2b8;
+		}
+
+		.page-item.active .page-link{
+			background-color : #17a2b8;
+			border-color: #17a2b8;
+		}

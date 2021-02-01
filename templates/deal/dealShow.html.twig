@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ deal.title}}
+{% endblock %}
+
+{% block body %}
+	<link href="{{ asset('css/dealShow.css') }}" type="text/css" rel="stylesheet">
+
+	<div class="container-fluid deals-list">
+			<div class="container deal-item">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-sm-3">
+							<a><img class="img-fluid" src="https://picsum.photos/250"></img></a>						
+						</div>
+						<div class="col-sm-9">
+							<div class="burn-style"><span> - 700° +</span></div>
+							<div>
+								<p class="float-right" >Expire le {{ deal.endDate | date('d/m/Y') }}</p>
+							</div>
+							<div>
+								<p><span class="deal-title">{{ deal.title }}</span></p>
+							</div>
+							<div>
+								<p><span class="new-price-style">{{ deal.newPrice }}€</span> <del><span class="old-price-style">{{ deal.oldPrice }}€</span></del> <span class="percent-price-style">{{ deal.percent }} %</span></p>
+							</div>
+							<div>
+								<p>{{ deal.description }}</p>
+							</div>
+							<div>
+								{{ deal.user.pseudo }} le {{ deal.createdAt | date('d/m/Y')  }}
+								<div class="float-right">
+									<button type="button" class="btn btn-info">Commentaires</button>
+									<a href="{{ deal.link }}" target="_blank" type="button" class="btn btn-info">Voir le deal =></a>
+								</div>							
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid deals-list">
+		<div class="container deal-item">
+			{{ form(form) }}
+		</div>
+	</div>
+	{% for comment in comments %}
+		<div class="container-fluid deals-list">
+			<div class="container deal-item">
+				<div>
+					{{comment.user.pseudo }} le {{ comment.createdAt | date('d/m/Y') }}
+				</div>
+				<div>
+					<span class="deal-title">{{ comment.title }}:</span>
+				</div>				
+				<p>{{ comment.content }}</p>
+			</div>		
+	{% endfor %}
+
+		{% if countPage != 0 %}
+			<nav aria-label="Page navigation" class="margin-pagination">
+				<ul class="pagination">
+					<li class="page-item {{ page == 1 ? "disabled" : ''}}">
+						<a class="page-link " href="?page={{page - 1}}" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					{% for comment in 1.. ( countPage ) %}
+						<li class="page-item {{ page == comment ? "active" : ""}}"><a class="page-link" href="?page={{comment}}">{{ comment }}</a></li>
+					{% endfor %}
+					<li class="page-item {{ page == countPage ? "disabled" : "" }}">
+						<a class="page-link" href="?page={{page + 1}}">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		{% endif %}
+		</div>
+{% endblock %}

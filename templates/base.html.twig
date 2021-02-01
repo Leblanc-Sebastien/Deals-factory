@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Deals-Factory{% endblock %}
+			
+		</title>
+		
+		{% block stylesheets %}
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+			<link href="{{ asset('css/base.css') }}" type="text/css" rel="stylesheet">
+		{% endblock %}
+		
+		{% block javascripts %}
+		
+		{% endblock %}
+		
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('deal_index') }}">Deals-Factory</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarColor02">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ path('deal_index') }}">Bons plans
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>						
+						<li class="nav-item">
+							<a class="nav-link" href="#">Codes promo</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Discutions</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+							<div class="dropdown-menu">
+								<p class="dropdown-item">Toutes les categories</p>
+								<div class="dropdown-divider"></div>
+							
+							<div class="row">
+								<div class="col-xs-6">
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 1}) }}">High-Tech</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 2}) }}">Consoles & jeux vidéo</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 3}) }}">Epicerie & courses</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 4}) }}">Mode & accessoires</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 5}) }}">Santé & Cosmétiques</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 6}) }}">Famille & enfants</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 7}) }}">Maison & habitat</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 8}) }}">Jardin & bricolage</a>
+								</div>								
+								<div class="col-xs-6">
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 9}) }}">Auto-Moto</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 10}) }}">Culture & divertissement</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 11}) }}">Sports & plein air</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 12}) }}">Forfaits mobiles et internet</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 13}) }}">Finances & Assurances</a>
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 14}) }}">Services</a>	
+									<a class="dropdown-item" href="{{ path('categorie', {'id' : 15}) }}">Voyages</a>
+								</div>							
+							</div>									
+								
+							</div>
+						</li>
+					</ul>
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="text" placeholder="Rechercher">
+						<!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Go</button> -->
+					</form>
+					<ul class="navbar-nav mr-auto">
+						
+							{% if app.user %}
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle btn btn-secondary nav-button-style nav-color-profil" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" >{{ app.user.pseudo}}</a>
+									<div class="dropdown-menu nav-dropdown-profil-style">
+										<a class="dropdown-item" href="{{ path('profil_user')}}">Profil</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="{{ path('logout-user')}}">Deconnexion</a>
+									</div>	
+								</li>
+								<li class="nav-item">
+									<a href="{{ path('add-deal')}}" type="button" class="btn btn-info nav-button-style">+ Poster ...</a>
+								</li>						
+							{% else %}
+								<li class="nav-item">
+									<a href="{{ path('login-user') }}" type="button" class="btn btn-secondary nav-button-style" id="open-modal">Connexion</a>										
+								</li>	
+								<li class="nav-item">
+									<a href="{{ path('add-user') }}" type="button" class="btn btn-info nav-button-style">+ Poster ...</a>
+								</li>
+							{% endif %}					
+					</ul>
+				</div>
+			</div>
+			<a href="#" class="btn btn-info btn-lg" data-toggle="modal" data-target="#monModal">Ouvrir Modal</a>
+			<div class="modal fade" id="monModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header"> 
+							<h4 class="modal-title">Formulaire de connexion</h4>
+							<button type="button" class="close" data-dismiss="modal">X</button>
+						</div>
+						<div class="modal-body">
+							<p>ce modal commence à bien me faire chier</p>
+						</div>
+						<div class="modal-footer">
+							<p>@+ les nuls</p>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		{% block body %}				
+		{% endblock %}		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="{{ asset('js/modalUser.js') }}"></script>
+	</body>
+</html>

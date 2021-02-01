@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deals-factory => Tous les deals
+{% endblock %}
+
+{% block body %}
+	<link href="{{ asset('css/deals.css') }}" type="text/css" rel="stylesheet">
+	
+	
+	<div class="container-fluid cat-def">
+		<div class="container">
+			<p>slider categorie</p>
+		</div>
+	</div>
+
+	<div class="container-fluid menu-filtre">
+		<div class="container">
+			<p>Menu</p>
+		</div>
+	</div>
+
+	<div class="container-fluid deals-list">
+		{% for deal in deals %}
+			<div class="container deal-item">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-sm-3">
+							<a><img class="img-fluid" src="https://picsum.photos/250"></img>
+						</a>
+					</div>
+					<div class="col-sm-9">
+						<div class="burn-style"><span> - 700° +</span></div>
+						<div>
+							<p class="float-right grey-style" >Expire le {{ deal.endDate | date('d/m/Y') }}</p>
+						</div>
+						<div>
+							<p><span class="deal-title">{{ deal.title }}</span></p>
+						</div>
+						<div>
+							<p><span class="new-price-style">{{ deal.newPrice }}€</span> <del><span class="old-price-style">{{ deal.oldPrice }}€</span></del> <span class="percent-price-style">{{ deal.percent }} %</span></p>
+						</div>
+						<div>
+							<p> {{ deal.description | u.truncate(255, ' ... ', false)}}<a href="{{ path('deal_show', {'id' : deal.id}) }}"></br>Lire la suite ...</a></p>
+						</div>
+						<div>
+							<span class="grey-style">{{ deal.user.pseudo }} le {{ deal.createdAt | date('d/m/Y')}}</span>
+							<div class="float-right">
+							<button type="button" class="btn btn-info">Commentaires</button>
+							<a href="{{ path('deal_show', {'id' : deal.id}) }}" type="button" class="btn btn-info">Voir le deal =></a>
+						</div>							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+			<nav aria-label="Page navigation" class="margin-pagination">
+				<ul class="pagination">
+					<li class="page-item {{ page == 1 ? "disabled" : ""}}">
+						<a class="page-link " href="?page={{ page - 1}}" aria-label="Previous">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					{% for dealItem in 1..( countPage )%}
+						<li class="page-item {{ page == dealItem ? 'active' : '' }}"><a class="page-link" href="?page={{dealItem}}">{{ dealItem }}</a></li>
+					{% endfor %}
+					<li class="page-item {{ page == countPage ? "disabled" : "" }}">
+						<a class="page-link" href="?page={{page + 1}}" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	
+{% endblock %}

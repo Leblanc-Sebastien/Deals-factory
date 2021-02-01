@@ -1,0 +1,36 @@
+.dropdown-menu{
+    margin-top: 8px;
+    background-color: #1d1f20;
+    border-radius: 0rem;
+    min-width: 30rem;
+    padding: 20px;  
+}
+.dropdown-item{
+    color: #bfc3c8 ;
+}
+
+.dropdown-item:hover {
+    color: white;
+    text-decoration: none;
+    background-color: #1d1f20;
+}
+
+.dropdown-divider{
+    border-top: 1px solid #bfc3c8 ;
+}
+
+.nav-button-style{
+    width: 100px;
+    height: auto;
+    margin: 5px;
+    padding: 5px;
+}
+
+.nav-dropdown-profil-style{
+    margin-top: 7px;
+    min-width: 0;
+}
+
+.nav-color-profil{
+    color:white !important; 
+}

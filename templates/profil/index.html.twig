@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre profil
+{% endblock %}
+
+
+{% block body %}
+	<link href="{{ asset('css/deals.css') }}" type="text/css" rel="stylesheet">
+	<link href="{{ asset('css/profil.css') }}" type="text/css" rel="stylesheet">
+
+	<div class="container-fluid deals-list">
+		<div class="container">
+			<div class="white-style">
+				<h2 class="border-top-title color-title">Profil de
+					{{ user.pseudo }}</h2>
+				<hr>
+				<div>
+					<p><span class="mini-title-profil">Votre pseudo :</span>	
+						{{ user.pseudo }}</p>
+					<p><span class="mini-title-profil">Votre email :</span>
+						{{ user.email }}</p>
+					<p><span class="mini-title-profil">Inscrit depuis le :</span>
+						{{user.createdAt | date('d/m/Y') }}</p>
+				</div>
+				<hr>
+			</div>
+			<div class="white-style">
+				<h3 class="color-title">Vos Deals :</h3>
+				<hr>
+			</div>
+
+			{% for deal in dealUser %}
+				<div class="container deal-item">
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-sm-3">
+								<a><img class="img-fluid" src="https://picsum.photos/250"></img>
+							</a>
+						</div>
+						<div class="col-sm-9">
+							<div class="burn-style">
+								<span>
+									- 700° +</span>
+							</div>
+							<div>
+								<p class="float-right grey-style">Expire le
+									{{ deal.endDate | date('d/m/Y') }}</p>
+							</div>
+							<div>
+								<p>
+									<span class="deal-title">{{ deal.title }}</span>
+								</p>
+							</div>
+							<div>
+								<p>
+									<span class="new-price-style">{{ deal.newPrice }}€</span>
+									<del>
+										<span class="old-price-style">{{ deal.oldPrice }}€</span>
+									</del>
+									<span class="percent-price-style">{{ deal.percent }}
+										%</span>
+								</p>
+							</div>
+							<div>
+								<p>{{ deal.description | u.truncate(255, ' ... ', false)}}<a href="{{ path('deal_show', {'id' : deal.id}) }}">Lire la suite</a>
+								</p>
+							</div>
+							<div>
+								<span class="grey-style">{{ deal.user.pseudo }}
+									le
+									{{ deal.createdAt | date('d/m/Y')}}</span>
+								<div class="float-right">
+									<button type="button" class="btn btn-info">Commentaires</button>
+									<a href="{{ path('deal_show', {'id' : deal.id}) }}" type="button" class="btn btn-info">Voir le deal =></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	
+</div>{% endblock %}
